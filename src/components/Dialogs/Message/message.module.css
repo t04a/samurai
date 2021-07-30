@@ -1,0 +1,7 @@
+.message {
+    display: flex;
+}
+
+.message:nth-child(even) {
+    justify-content: flex-end;
+}

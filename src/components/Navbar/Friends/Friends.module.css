@@ -1,0 +1,9 @@
+.blockName {
+    font-size: 30px;
+}
+
+.friends {
+    display: flex;
+    gap: 5px;
+    justify-content: space-around;
+}
