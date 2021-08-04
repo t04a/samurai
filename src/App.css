@@ -1,9 +1,9 @@
 a {
   text-decoration: none;
-  /*color: white;*/
+  color: blue;
 }
 a:visited {
-  /*color: white;*/
+  color: blue;
 }
 .app-wrapper {
   margin: 0 auto;
