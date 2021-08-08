@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
+import {connect} from "react-redux";
 
-function NavbarContainer(props) {
+/*function NavbarContainer(props) {
 
     let state = props.store.getState().navbarPage;
 
@@ -9,4 +10,12 @@ function NavbarContainer(props) {
     );
 }
 
-export default NavbarContainer;
+export default NavbarContainer;*/
+
+function f1(state) {
+    return {
+        state: state.navbarPage,
+    }
+}
+
+export default connect(f1)(Navbar)

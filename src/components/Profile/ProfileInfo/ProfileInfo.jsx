@@ -1,6 +1,7 @@
 import style from "./ProfileInfo.module.css"
 
-function ProfileInfo(props) {
+function ProfileInfo() {
+
     return (
         <div>
             <div>
