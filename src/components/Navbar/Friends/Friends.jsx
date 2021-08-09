@@ -2,7 +2,7 @@ import style from './Friends.module.css'
 import Friend from "./Friend/Friend";
 
 function Friends(props) {
-    let friendElements = props.state.map( f => <Friend name={f.name}/>)
+    let friendElements = props.state.map( f => <Friend key={f.id} name={f.name}/>)
     return (
         <div>
             <p className={style.blockName}>Friends</p>
