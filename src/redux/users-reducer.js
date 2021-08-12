@@ -5,7 +5,7 @@ const SET_USERS = 'SET_USERS';
 
 let initialState = {
     users: [
-        {
+        /*{
             id: 1, firstName: 'Dmitry',
             lastName: 'K.',
             userStatus: 'I am looking for a job',
@@ -26,7 +26,7 @@ let initialState = {
             },
             isFollow: false,
             avatar: 'https://foreignpolicy.com/wp-content/uploads/2017/03/gettyimages-474375985.jpg?w=800&h=528&quality=90',
-        },
+        },*/
     ],
 };
 
@@ -68,7 +68,7 @@ function usersReducer(state = initialState, action) {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users],
+                users: [/*...state.users, */...action.users],
             }
         }
         default: {
@@ -98,8 +98,11 @@ export function toggleFollowAC(userId) {
     }
 }
 
-export function setUsersAC() {
-
+export function setUsersAC(users) {
+    return {
+        type: SET_USERS,
+        users,
+    }
 }
 
 export default usersReducer;
