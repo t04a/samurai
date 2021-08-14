@@ -1,4 +1,5 @@
 import style from '../Users.module.css'
+import userAvatar from '../../../assets/images/medved.jpg'
 
 function User(props) {
 
@@ -18,7 +19,7 @@ function User(props) {
         <div className={style.user}>
             <div>
                 <div>
-                    <img className={style.avatar} src={props.user.avatar} alt="ololo"/>
+                    <img className={style.avatar} src={props.user.avatar ? props.user.photos.small : userAvatar} alt="ololo"/>
                 </div>
                 {/*<div>
                     {props.user.isFollow ?
@@ -33,18 +34,19 @@ function User(props) {
             </div>
             <div>
                 <div>
-                    {props.user.firstName}
-                    {props.user.lastName}
+                    {/*{props.user.firstName}*/}
+                    {/*{props.user.lastName}*/}
+                    {props.user.name}
                 </div>
                 <div>
                     {props.user.userStatus}
                 </div>
                 <div>
                     <div>
-                        {props.user.location.country}
+                        {/*{props.user.location.country}*/}
                     </div>
                     <div>
-                        {props.user.location.city}
+                        {/*{props.user.location.city}*/}
                     </div>
                 </div>
             </div>
