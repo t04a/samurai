@@ -1,6 +1,30 @@
+import React from "react";
 import User from "./User/User";
 import axios from "axios";
 
+class Users extends React.Component {
+    constructor(props) {
+        super(props);
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items);
+        })
+    }
+
+    render() {
+        let userElements = this.props.users.map(u => <User key={u.id} user={u} onToggleFollow={this.props.toggleFollow}
+                                                           onSetUsers={this.props.setUsers}/>);
+        return (
+            <div>
+                {userElements}
+            </div>
+        )
+    }
+}
+
+export default Users;
+
+/*
 function Users(props) {
     // debugger
     function getUsers() {
@@ -10,7 +34,7 @@ function Users(props) {
                 props.setUsers(response.data.items);
             })
 
-            /*props.setUsers(
+            /!*props.setUsers(
                 [
                     {
                         id: 1, firstName: 'Dmitry',
@@ -35,12 +59,12 @@ function Users(props) {
                         avatar: 'https://foreignpolicy.com/wp-content/uploads/2017/03/gettyimages-474375985.jpg?w=800&h=528&quality=90',
                     }
                 ]
-            )*/
+            )*!/
         }
     }
 
     let usersElements = props.users.map(u => <User key={u.id} user={u} onToggleFollow={props.toggleFollow}
-                                                   onSetUsers={props.setUsers}/*onFollow={props.follow} onUnfollow={props.unfollow}*/ />);
+                                                   onSetUsers={props.setUsers}/!*onFollow={props.follow} onUnfollow={props.unfollow}*!/ />);
 
     return (
         <div>
@@ -50,4 +74,4 @@ function Users(props) {
     )
 }
 
-export default Users;
+export default Users;*/
