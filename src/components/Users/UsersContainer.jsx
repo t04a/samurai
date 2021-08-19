@@ -1,27 +1,34 @@
 import {connect} from "react-redux";
-import {followAC, setUsersAC, toggleFollowAC, unfollowAC} from "../../redux/users-reducer";
+import {
+    setCurrentPageAC,
+    setUsersAC,
+    setUsersTotalCountAC,
+    toggleFollowAC,
+} from "../../redux/users-reducer";
 import Users from "./Users";
 
 function f1(state) {
-    // debugger
     return {
         users: state.usersPage.users,
+        usersPerPage: state.usersPage.usersPerPage,
+        pagesCount: Math.ceil(state.usersPage.usersTotalCount / state.usersPage.usersPerPage),
+        currentPage: state.usersPage.currentPage,
     }
 }
 
 function f2(dispatch) {
     return {
-        /*follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },*/
         toggleFollow: (userId) => {
             dispatch(toggleFollowAC(userId))
         },
         setUsers: (users) => {
             dispatch(setUsersAC(users))
+        },
+        setTotalUsersCount: (totalUsersCount) => {
+            dispatch(setUsersTotalCountAC(totalUsersCount))
+        },
+        setCurrentPage: (currentPage) => {
+            dispatch(setCurrentPageAC(currentPage))
         }
     }
 }

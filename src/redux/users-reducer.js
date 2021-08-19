@@ -1,57 +1,17 @@
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 let initialState = {
-    users: [
-        /*{
-            id: 1, firstName: 'Dmitry',
-            lastName: 'K.',
-            userStatus: 'I am looking for a job',
-            location: {
-                country: 'Russia',
-                city: "Moscow",
-            },
-            isFollow: true,
-            avatar: 'https://foreignpolicy.com/wp-content/uploads/2017/03/gettyimages-474375985.jpg?w=800&h=528&quality=90',
-        },
-        {
-            id: 2, firstName: 'Alex',
-            lastName: 'D.',
-            userStatus: 'I am looking for a job too',
-            location: {
-                country: 'Belarus',
-                city: "Minsk",
-            },
-            isFollow: false,
-            avatar: 'https://foreignpolicy.com/wp-content/uploads/2017/03/gettyimages-474375985.jpg?w=800&h=528&quality=90',
-        },*/
-    ],
+    users: [],
+    usersTotalCount: 0,
+    usersPerPage: 8,
+    currentPage: 1,
 };
 
 function usersReducer(state = initialState, action) {
     switch (action.type) {
-        /*case FOLLOW:
-            return {
-                ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, isFollow: true}
-                    }
-                    return u;
-                }),
-            }
-        case UNFOLLOW:
-            return {
-                ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, isFollow: false}
-                    }
-                    return u;
-                }),
-            }*/
         case TOGGLE_FOLLOW:
             return {
                 ...state,
@@ -68,7 +28,19 @@ function usersReducer(state = initialState, action) {
         case SET_USERS: {
             return {
                 ...state,
-                users: [/*...state.users, */...action.users],
+                users: action.users,
+            }
+        }
+        case SET_USERS_TOTAL_COUNT: {
+            return {
+                ...state,
+                usersTotalCount: action.usersTotalCount
+            }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.currentPage,
             }
         }
         default: {
@@ -76,20 +48,6 @@ function usersReducer(state = initialState, action) {
         }
     }
 }
-
-/*export function followAC(userId) {
-    return {
-        type: FOLLOW,
-        userId,
-    }
-}
-
-export function unfollowAC(userId) {
-    return {
-        type: UNFOLLOW,
-        userId,
-    }
-}*/
 
 export function toggleFollowAC(userId) {
     return {
@@ -102,6 +60,20 @@ export function setUsersAC(users) {
     return {
         type: SET_USERS,
         users,
+    }
+}
+
+export function setUsersTotalCountAC(usersTotalCount) {
+    return {
+        type: SET_USERS_TOTAL_COUNT,
+        usersTotalCount,
+    }
+}
+
+export function setCurrentPageAC(currentPage) {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage,
     }
 }
 

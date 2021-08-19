@@ -8,3 +8,12 @@
     height: 50px;
     border-radius: 50%;
 }
+
+.pagEl {
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.selected {
+    font-weight: bold;
+}
