@@ -2,13 +2,13 @@ import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../..
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
-function f1(state) {
+function mapStateToProps(state) {
     return {
         state: state.dialogsPage,
     }
 }
 
-function f2(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         updateNewMessageText: (newMessageText) => {
             dispatch(updateNewMessageTextActionCreator(newMessageText));
@@ -19,4 +19,4 @@ function f2(dispatch) {
     }
 }
 
-export default connect(f1, f2)(Dialogs);
+export default connect(mapStateToProps, mapDispatchToProps)(Dialogs);
