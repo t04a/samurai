@@ -1,11 +1,12 @@
 import React from "react";
 import User from "./User/User";
 import style from './Users.module.css'
+import Preloader from "../common/Preloader/Preloader";
 
 function Users(props) {
 
     let userElements = props.users.map(u => <User key={u.id} user={u} onToggleFollow={props.toggleFollow}
-                                                       onSetUsers={props.setUsers}/>);
+                                                  onSetUsers={props.setUsers}/>);
     let pages = [];
     for (let i = 1; i <= props.pagesCount; i++) {
         pages.push(i)
@@ -19,10 +20,19 @@ function Users(props) {
 
     return (
         <div>
-            <div>
-                {paginationElements}
-            </div>
-            {userElements}
+            { props.isFetching ?
+                <Preloader/> :
+                <div>
+                    <div>
+                        {paginationElements}
+                    </div>
+                    <div>
+                        {userElements}
+                    </div>
+                </div>
+            }
+
+
         </div>
     )
 }
