@@ -1,9 +1,9 @@
 import {connect} from "react-redux";
 import {
-    setCurrentPageAC, setIsFetchingAC,
-    setUsersAC,
-    setUsersTotalCountAC,
-    toggleFollowAC,
+    setCurrentPage, setIsFetching,
+    setUsers,
+    setUsersTotalCount,
+    toggleFollow,
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
@@ -17,7 +17,7 @@ class UserContainer extends React.Component {
                 .then(response => {
                     this.props.setIsFetching(false);
                     this.props.setUsers(response.data.items);
-                    this.props.setTotalUsersCount(response.data.totalCount)
+                    this.props.setUsersTotalCount(response.data.totalCount)
                 })
         }, 500)
     }
@@ -29,7 +29,7 @@ class UserContainer extends React.Component {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersPerPage}`)
                 .then(response => {
                     this.props.setIsFetching(false);
-                    this.props.setTotalUsersCount(response.data.totalCount)
+                    this.props.setUsersTotalCount(response.data.totalCount)
                     this.props.setUsers(response.data.items);
                 })
         }, 500)
@@ -60,24 +60,7 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        toggleFollow: (userId) => {
-            dispatch(toggleFollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setTotalUsersCount: (totalUsersCount) => {
-            dispatch(setUsersTotalCountAC(totalUsersCount))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setIsFetching: (isFetching) => {
-            dispatch(setIsFetchingAC(isFetching))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(
+    mapStateToProps,
+    { toggleFollow,setUsers,setUsersTotalCount,setCurrentPage,setIsFetching}
+)(UserContainer);

@@ -57,35 +57,35 @@ function usersReducer(state = initialState, action) {
     }
 }
 
-export function toggleFollowAC(userId) {
+export function toggleFollow(userId) {
     return {
         type: TOGGLE_FOLLOW,
         userId,
     }
 }
 
-export function setUsersAC(users) {
+export function setUsers(users) {
     return {
         type: SET_USERS,
         users,
     }
 }
 
-export function setUsersTotalCountAC(usersTotalCount) {
+export function setUsersTotalCount(usersTotalCount) {
     return {
         type: SET_USERS_TOTAL_COUNT,
         usersTotalCount,
     }
 }
 
-export function setCurrentPageAC(currentPage) {
+export function setCurrentPage(currentPage) {
     return {
         type: SET_CURRENT_PAGE,
         currentPage,
     }
 }
 
-export function setIsFetchingAC(isFetching) {
+export function setIsFetching(isFetching) {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching,
