@@ -12,27 +12,24 @@ import axios from "axios";
 class UserContainer extends React.Component {
     componentDidMount() {
         this.props.setIsFetching(true);
-        setTimeout(() => {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`)
-                .then(response => {
-                    this.props.setIsFetching(false);
-                    this.props.setUsers(response.data.items);
-                    this.props.setUsersTotalCount(response.data.totalCount)
-                })
-        }, 500)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`)
+            .then(response => {
+                this.props.setIsFetching(false);
+                this.props.setUsers(response.data.items);
+                this.props.setUsersTotalCount(response.data.totalCount)
+            })
     }
 
     onPageChanged = (p) => {
         this.props.setCurrentPage(p);
         this.props.setIsFetching(true);
-        setTimeout(() => {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersPerPage}`)
-                .then(response => {
-                    this.props.setIsFetching(false);
-                    this.props.setUsersTotalCount(response.data.totalCount)
-                    this.props.setUsers(response.data.items);
-                })
-        }, 500)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersPerPage}`)
+            .then(response => {
+                this.props.setIsFetching(false);
+                this.props.setUsersTotalCount(response.data.totalCount)
+                this.props.setUsers(response.data.items);
+            })
+
     }
 
     render() {
@@ -62,5 +59,5 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-    { toggleFollow,setUsers,setUsersTotalCount,setCurrentPage,setIsFetching}
+    {toggleFollow, setUsers, setUsersTotalCount, setCurrentPage, setIsFetching}
 )(UserContainer);

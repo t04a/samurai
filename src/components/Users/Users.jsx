@@ -10,7 +10,7 @@ function Users(props) {
     let pages = [];
     for (let i = 1; i <= props.pagesCount; i++) {
         pages.push(i)
-        if (i >= 24) {
+        if (i >= 10) {
             break;
         }
     }
@@ -23,7 +23,7 @@ function Users(props) {
             { props.isFetching ?
                 <Preloader/> :
                 <div>
-                    <div>
+                    <div className={style.pagination}>
                         {paginationElements}
                     </div>
                     <div>
@@ -31,8 +31,6 @@ function Users(props) {
                     </div>
                 </div>
             }
-
-
         </div>
     )
 }

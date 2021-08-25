@@ -9,6 +9,11 @@
     border-radius: 50%;
 }
 
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .pagEl {
     margin: 0 4px;
     cursor: pointer;

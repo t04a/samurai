@@ -1,5 +1,6 @@
 import style from '../Users.module.css'
 import userAvatar from '../../../assets/images/medved.jpg'
+import {NavLink} from "react-router-dom";
 
 function User(props) {
 
@@ -8,10 +9,16 @@ function User(props) {
     }
 
     return (
+
         <div className={style.user}>
             <div>
                 <div>
-                    <img className={style.avatar} src={props.user.avatar ? props.user.photos.small : userAvatar} alt="ololo"/>
+                    <NavLink to={"/profile/" + props.user.id}>
+                        <img className={style.avatar} src={props.user.photos.small ?
+                            props.user.photos.small :
+                            userAvatar}
+                            alt="avatar"/>
+                    </NavLink>
                 </div>
                 <div>
                     <button onClick={() => onToggleFollow(props.user.id)}>
