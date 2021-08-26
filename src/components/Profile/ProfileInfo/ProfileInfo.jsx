@@ -5,6 +5,7 @@ function ProfileInfo(props) {
     if (!props.userProfile) {
         return <Preloader/>
     }
+
     return (
         <div>
             <div>
@@ -14,7 +15,17 @@ function ProfileInfo(props) {
             </div>
             <div className={style.descriptionBlock}>
                 <img src={props.userProfile.photos.large} alt="avatar"/>
-                <div>description</div>
+                <div>
+                    {props.userProfile.fullName}
+                </div>
+                <div>
+                    <div>
+                        Looking for a job? {`${props.userProfile.lookingForAJob}`}
+                    </div>
+                    <div>
+                        Why? {props.userProfile.lookingForAJobDescription}
+                    </div>
+                </div>
             </div>
         </div>
     );

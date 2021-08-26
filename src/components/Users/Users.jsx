@@ -10,7 +10,7 @@ function Users(props) {
     let pages = [];
     for (let i = 1; i <= props.pagesCount; i++) {
         pages.push(i)
-        if (i >= 10) {
+        if (i >= 40) {
             break;
         }
     }
