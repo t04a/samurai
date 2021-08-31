@@ -12,7 +12,9 @@ import axios from "axios";
 class UserContainer extends React.Component {
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.setIsFetching(false);
                 this.props.setUsers(response.data.items);
@@ -23,7 +25,9 @@ class UserContainer extends React.Component {
     onPageChanged = (p) => {
         this.props.setCurrentPage(p);
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersPerPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersPerPage}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.setIsFetching(false);
                 this.props.setUsersTotalCount(response.data.totalCount)

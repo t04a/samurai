@@ -21,7 +21,7 @@ function usersReducer(state = initialState, action) {
                     if (u.id === action.userId) {
                         return {
                             ...u,
-                            isFollow: !u.isFollow,
+                            followed: !u.followed,
                         }
                     }
                     return u;
