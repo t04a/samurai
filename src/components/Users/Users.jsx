@@ -16,7 +16,7 @@ function Users(props) {
     }
     let paginationElements = pages.map(p => (
         <span className={`${style.pagEl} ${props.currentPage === p ? style.selected : undefined}`}
-              onClick={() => props.onPageChanged(p)}>{p}</span>));
+              onClick={() => props.onPageChanged(p)} key={p}>{p}</span>));
 
     return (
         <div>

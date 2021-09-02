@@ -7,31 +7,27 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
-import axios from "axios";
+import {usersAPI} from "../../api/api";
 
 class UserContainer extends React.Component {
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`, {
-            withCredentials: true,
-        })
-            .then(response => {
+        usersAPI.getUsers(this.props.currentPage, this.props.usersPerPage)
+            .then(data => {
                 this.props.setIsFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setUsersTotalCount(response.data.totalCount)
+                this.props.setUsers(data.items);
+                this.props.setUsersTotalCount(data.totalCount)
             })
     }
 
-    onPageChanged = (p) => {
-        this.props.setCurrentPage(p);
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.usersPerPage}`, {
-            withCredentials: true,
-        })
-            .then(response => {
+        usersAPI.getUsers(pageNumber, this.props.usersPerPage)
+            .then(data => {
                 this.props.setIsFetching(false);
-                this.props.setUsersTotalCount(response.data.totalCount)
-                this.props.setUsers(response.data.items);
+                this.props.setUsersTotalCount(data.totalCount)
+                this.props.setUsers(data.items);
             })
 
     }
