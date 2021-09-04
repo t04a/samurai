@@ -4,9 +4,13 @@ import style from './Users.module.css'
 import Preloader from "../common/Preloader/Preloader";
 
 function Users(props) {
-
-    let userElements = props.users.map(u => <User key={u.id} user={u} onToggleFollow={props.toggleFollow}
-                                                  onSetUsers={props.setUsers}/>);
+    let userElements = props.users.map(u => <User key={u.id}
+                                                  user={u}
+                                                  onToggleFollow={props.toggleFollow}
+                                                  onSetUsers={props.setUsers}
+                                                  followingInProgressUsers={props.followingInProgressUsers}
+                                                  toggleUserIsFollowing={props.toggleUserIsFollowing}
+    />);
     let pages = [];
     for (let i = 1; i <= props.pagesCount; i++) {
         pages.push(i)

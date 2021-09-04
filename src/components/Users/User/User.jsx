@@ -6,13 +6,14 @@ import {followAPI} from "../../../api/api";
 function User(props) {
 
     function onToggleFollow(userId) {
-
+        props.toggleUserIsFollowing(userId, true)
         props.user.followed ?
             followAPI.unfollow(userId)
                 .then(data => {
                     if (data.resultCode === 0) {
                         props.onToggleFollow(userId);
                     }
+                    props.toggleUserIsFollowing(userId, false)
                 })
             :
             followAPI.follow(userId)
@@ -20,11 +21,11 @@ function User(props) {
                     if (data.resultCode === 0) {
                         props.onToggleFollow(userId);
                     }
+                    props.toggleUserIsFollowing(userId, false)
                 })
     }
 
     return (
-
         <div className={style.user}>
             <div>
                 <div>
@@ -36,9 +37,9 @@ function User(props) {
                     </NavLink>
                 </div>
                 <div>
-                    <button onClick={() => {
-                        onToggleFollow(props.user.id)
-                    }}>
+                    <button
+                        onClick={() => onToggleFollow(props.user.id)}
+                        disabled={props.followingInProgressUsers.some((users) => users === props.user.id)}>
                         {props.user.followed ? 'unfollow' : 'follow'}
                     </button>
                 </div>
