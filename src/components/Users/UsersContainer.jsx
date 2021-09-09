@@ -1,35 +1,33 @@
 import {connect} from "react-redux";
 import {
-    setCurrentPage, setIsFetching,
-    setUsers,
-    setUsersTotalCount,
-    toggleFollow, toggleUserIsFollowing,
+    getUsers,
+    toggleFollow,
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
-import {usersAPI} from "../../api/api";
 
 class UserContainer extends React.Component {
     componentDidMount() {
-        this.props.setIsFetching(true);
+        /*this.props.setIsFetching(true);
         usersAPI.getUsers(this.props.currentPage, this.props.usersPerPage)
             .then(data => {
                 this.props.setIsFetching(false);
                 this.props.setUsers(data.items);
                 this.props.setUsersTotalCount(data.totalCount)
-            })
+            })*/
+        this.props.getUsers(this.props.currentPage, this.props.usersPerPage)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
+       /* this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true);
         usersAPI.getUsers(pageNumber, this.props.usersPerPage)
             .then(data => {
                 this.props.setIsFetching(false);
                 this.props.setUsersTotalCount(data.totalCount)
                 this.props.setUsers(data.items);
-            })
-
+            })*/
+        this.props.getUsers(pageNumber, this.props.usersPerPage)
     }
 
     render() {
@@ -43,7 +41,7 @@ class UserContainer extends React.Component {
                 onPageChanged={this.onPageChanged}
                 isFetching={this.props.isFetching}
             />*/
-            <Users {...this.props}/>
+            <Users {...this.props} onPageChanged={this.onPageChanged}/>
         )
     }
 }
@@ -61,5 +59,4 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-    {toggleFollow, setUsers, setUsersTotalCount, setCurrentPage, setIsFetching,toggleUserIsFollowing}
-)(UserContainer);
+    {getUsers, toggleFollow})(UserContainer);

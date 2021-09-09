@@ -1,12 +1,13 @@
 import style from '../Users.module.css'
 import userAvatar from '../../../assets/images/medved.jpg'
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../../../api/api";
 
 function User(props) {
 
-    function onToggleFollow(userId) {
-        props.toggleUserIsFollowing(userId, true)
+    /*function onToggleFollow(userId, isFollow) {
+        //code
+        props.onToggleFollow(userId, isFollow)
+        /!*props.toggleUserIsFollowing(userId, true)
         props.user.followed ?
             followAPI.unfollow(userId)
                 .then(data => {
@@ -22,23 +23,24 @@ function User(props) {
                         props.onToggleFollow(userId);
                     }
                     props.toggleUserIsFollowing(userId, false)
-                })
-    }
+                })*!/
+    }*/
 
     return (
         <div className={style.user}>
             <div>
                 <div>
                     <NavLink to={"/profile/" + props.user.id}>
-                        <img className={style.avatar} src={props.user.photos.small ?
-                            props.user.photos.small :
-                            userAvatar}
+                        <img className={style.avatar}
+                             src={props.user.photos.small ?
+                                props.user.photos.small :
+                                userAvatar}
                              alt="avatar"/>
                     </NavLink>
                 </div>
                 <div>
                     <button
-                        onClick={() => onToggleFollow(props.user.id)}
+                        onClick={() => props.onToggleFollow(props.user.id, props.user.followed)}
                         disabled={props.followingInProgressUsers.some((users) => users === props.user.id)}>
                         {props.user.followed ? 'unfollow' : 'follow'}
                     </button>

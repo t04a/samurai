@@ -7,10 +7,11 @@ function Users(props) {
     let userElements = props.users.map(u => <User key={u.id}
                                                   user={u}
                                                   onToggleFollow={props.toggleFollow}
-                                                  onSetUsers={props.setUsers}
+                                                  /*onSetUsers={props.setUsers}*/
                                                   followingInProgressUsers={props.followingInProgressUsers}
-                                                  toggleUserIsFollowing={props.toggleUserIsFollowing}
+                                                  /*toggleUserIsFollowing={props.toggleUserIsFollowing}*/
     />);
+
     let pages = [];
     for (let i = 1; i <= props.pagesCount; i++) {
         pages.push(i)
@@ -18,9 +19,12 @@ function Users(props) {
             break;
         }
     }
+
     let paginationElements = pages.map(p => (
         <span className={`${style.pagEl} ${props.currentPage === p ? style.selected : undefined}`}
-              onClick={() => props.onPageChanged(p)} key={p}>{p}</span>));
+              onClick={() => props.onPageChanged(p)}
+              key={p}>
+            {p}</span>));
 
     return (
         <div>

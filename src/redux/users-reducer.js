@@ -1,3 +1,5 @@
+import {followAPI, usersAPI} from "../api/api";
+
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
@@ -68,36 +70,48 @@ function usersReducer(state = initialState, action) {
     }
 }
 
-export function toggleFollow(userId) {
-    return {
-        type: TOGGLE_FOLLOW,
-        userId,
+/*action creators*/
+export const toggleFollowAC = (userId) => ({type: TOGGLE_FOLLOW, userId});
+export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const setUsersTotalCountAC = (usersTotalCount) => ({type: SET_USERS_TOTAL_COUNT, usersTotalCount});
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleUserIsFollowingAC = (userId, isFollowing) => ({type: TOGGLE_USER_IS_FOLLOWING, userId, isFollowing});
+
+/*thunk creators*/
+export const getUsers = (currentPage, usersPerPage) => {
+    return (dispatch) => {
+        dispatch(setCurrentPageAC(currentPage));
+        dispatch(setIsFetchingAC(true));
+        usersAPI.getUsers(currentPage, usersPerPage)
+            .then(data => {
+                dispatch(setIsFetchingAC(false));
+                dispatch(setUsersAC(data.items));
+                dispatch(setUsersTotalCountAC(data.totalCount));
+            })
     }
 }
 
-export function setUsers(users) {
-    return {
-        type: SET_USERS,
-        users,
+export const toggleFollow = (userId, isFollow) => {
+    return (dispatch) => {
+        dispatch(toggleUserIsFollowingAC(userId, true));
+        isFollow ?
+            followAPI.unfollow(userId)
+                .then(data => {
+                    if (data.resultCode === 0) {
+                        dispatch(toggleFollowAC(userId));
+                    }
+                    dispatch(toggleUserIsFollowingAC(userId, false));
+                })
+            :
+            followAPI.follow(userId)
+                .then(data => {
+                    if (data.resultCode === 0) {
+                        dispatch(toggleFollowAC(userId));
+                    }
+                    dispatch(toggleUserIsFollowingAC(userId, false));
+                })
     }
 }
-
-export function setUsersTotalCount(usersTotalCount) {
-    return {
-        type: SET_USERS_TOTAL_COUNT,
-        usersTotalCount,
-    }
-}
-
-export function setCurrentPage(currentPage) {
-    return {
-        type: SET_CURRENT_PAGE,
-        currentPage,
-    }
-}
-
-export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
-
-export const toggleUserIsFollowing = (userId, isFollowing) => ({type: TOGGLE_USER_IS_FOLLOWING, userId, isFollowing})
 
 export default usersReducer;
