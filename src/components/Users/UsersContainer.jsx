@@ -1,8 +1,5 @@
 import {connect} from "react-redux";
-import {
-    getUsers,
-    toggleFollow,
-} from "../../redux/users-reducer";
+import {getUsers, toggleFollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
 
@@ -57,6 +54,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    {getUsers, toggleFollow})(UserContainer);
+export default connect(mapStateToProps,{getUsers, toggleFollow})(UserContainer);
