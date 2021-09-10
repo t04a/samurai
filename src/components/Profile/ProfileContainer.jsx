@@ -10,6 +10,7 @@ class ProfileContainer extends react.Component {
         if (!userId) {
             userId = 2;
         }
+
         // let userId = this.props.match.params.userId || 2
 
         this.props.getUserProfile(userId);

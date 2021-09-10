@@ -3,29 +3,6 @@ import userAvatar from '../../../assets/images/medved.jpg'
 import {NavLink} from "react-router-dom";
 
 function User(props) {
-
-    /*function onToggleFollow(userId, isFollow) {
-        //code
-        props.onToggleFollow(userId, isFollow)
-        /!*props.toggleUserIsFollowing(userId, true)
-        props.user.followed ?
-            followAPI.unfollow(userId)
-                .then(data => {
-                    if (data.resultCode === 0) {
-                        props.onToggleFollow(userId);
-                    }
-                    props.toggleUserIsFollowing(userId, false)
-                })
-            :
-            followAPI.follow(userId)
-                .then(data => {
-                    if (data.resultCode === 0) {
-                        props.onToggleFollow(userId);
-                    }
-                    props.toggleUserIsFollowing(userId, false)
-                })*!/
-    }*/
-
     return (
         <div className={style.user}>
             <div>

@@ -28,7 +28,7 @@ export const followAPI = {
 
 export const authAPI = {
     auth() {
-        return instance.get('https://social-network.samuraijs.com/api/1.0/auth/me')
+        return instance.get('auth/me')
             .then(response => response.data)
 
     }
@@ -36,6 +36,6 @@ export const authAPI = {
 
 export const profileAPI = {
     getUserProfile(userId) {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+        return instance.get(`profile/` + userId)
     }
 }

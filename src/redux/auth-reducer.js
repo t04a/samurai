@@ -28,7 +28,7 @@ function authReducer(state = initialState, action) {
 export const setUserAuthDataAC = (userId, login, email) => ({type: SET_USER_AUTH_DATA, userAuthData: {userId, login, email}});
 
 // thunk creators
-export const setUserAuthData = () => {
+export const getUserAuthData = () => {
     return (dispatch) => {
         authAPI.auth().then(data => {
             if (data.resultCode === 0) {

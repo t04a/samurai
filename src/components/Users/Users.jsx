@@ -7,9 +7,7 @@ function Users(props) {
     let userElements = props.users.map(u => <User key={u.id}
                                                   user={u}
                                                   onToggleFollow={props.toggleFollow}
-                                                  /*onSetUsers={props.setUsers}*/
                                                   followingInProgressUsers={props.followingInProgressUsers}
-                                                  /*toggleUserIsFollowing={props.toggleUserIsFollowing}*/
     />);
 
     let pages = [];
