@@ -2,6 +2,7 @@ import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../..
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 function mapStateToProps(state) {
     return {
@@ -9,7 +10,7 @@ function mapStateToProps(state) {
     }
 }
 
-let redirectedComponent = withAuthRedirect(Dialogs)
+// let redirectedComponent = withAuthRedirect(Dialogs)
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -22,4 +23,6 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(redirectedComponent);
+// export default connect(mapStateToProps, mapDispatchToProps)(redirectedComponent);
+
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs)
