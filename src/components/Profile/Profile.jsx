@@ -4,11 +4,10 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 function Profile(props) {
-
     return (
         <div className={styles.content}>
             <ProfileInfo userProfile={props.profilePage.userProfile}/>
-            <ProfileStatus status={'This my life'}/>
+            <ProfileStatus profileStatus={props.profileStatus} updateProfileStatus={props.updateProfileStatus}/>
             <MyPostsContainer/>
         </div>
     );

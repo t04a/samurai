@@ -3,6 +3,7 @@ import {profileAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 
 let initialState = {
     posts: [
@@ -14,6 +15,7 @@ let initialState = {
     ],
     newPostText: '',
     userProfile: null,
+    profileStatus: ''
 };
 
 function profileReducer(state = initialState, action) {
@@ -42,6 +44,12 @@ function profileReducer(state = initialState, action) {
                 userProfile: action.userProfile,
             }
         }
+        case SET_PROFILE_STATUS: {
+            return {
+                ...state,
+                profileStatus: action.status,
+            }
+        }
         default: {
             return state;
         }
@@ -50,8 +58,9 @@ function profileReducer(state = initialState, action) {
 
 //action creators
 export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
-export const setUserProfileAC = (userProfile) => ({type: SET_USER_PROFILE, userProfile})
+export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text});
+export const setUserProfileAC = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
+export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status})
 
 //thunk creators
  export const getUserProfile = (userId) => {
@@ -61,5 +70,28 @@ export const setUserProfileAC = (userProfile) => ({type: SET_USER_PROFILE, userP
         })
     }
  }
+
+ export const getProfileStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileStatus(userId)
+            .then( response => {
+                // console.log(response.data)
+                dispatch(setProfileStatus(response.data))
+            })
+    }
+ }
+
+export const updateProfileStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateProfileStatus(status)
+            .then( response => {
+                console.log(response)
+                if (response.data.resultCode === 0) {
+                   dispatch(setProfileStatus(status))
+                }
+            })
+    }
+}
+
 
 export default profileReducer;
