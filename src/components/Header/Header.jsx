@@ -9,8 +9,11 @@ function Header(props) {
         </div>
         <div className={style.auth}>
             {props.isAuth ?
-            <NavLink to={"/profile/"}>{props.login} ({props.email})</NavLink> :
-            <NavLink to={"/auth/"}>Login</NavLink>
+                <div>
+                    <NavLink to={"/profile/"}>{props.login} ({props.email}) - </NavLink>
+                    <button onClick={props.logout}>Logout</button>
+                </div> :
+                <NavLink to={"/login/"}>Login</NavLink>
             }
         </div>
     </header>
