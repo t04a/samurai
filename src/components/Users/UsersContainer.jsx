@@ -2,7 +2,6 @@ import {connect} from "react-redux";
 import {getUsers, toggleFollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 class UserContainer extends React.Component {
@@ -36,4 +35,4 @@ function mapStateToProps(state) {
 
 // export default connect(mapStateToProps,{getUsers, toggleFollow})(redirectedComponent);
 
-export default compose(connect(mapStateToProps,{getUsers, toggleFollow}), withAuthRedirect)(UserContainer)
+export default compose(connect(mapStateToProps,{getUsers, toggleFollow}))(UserContainer)
