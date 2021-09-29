@@ -79,7 +79,7 @@ export const setIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFet
 export const toggleUserIsFollowingAC = (userId, isFollowing) => ({type: TOGGLE_USER_IS_FOLLOWING, userId, isFollowing});
 
 /*thunk creators*/
-export const getUsers = (currentPage, usersPerPage) => {
+export const requestUsers = (currentPage, usersPerPage) => {
     return (dispatch) => {
         dispatch(setCurrentPageAC(currentPage));
         dispatch(setIsFetchingAC(true));

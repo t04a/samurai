@@ -1,16 +1,23 @@
 import {connect} from "react-redux";
-import {getUsers, toggleFollow} from "../../redux/users-reducer";
+import {requestUsers, toggleFollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgressUsers,
+    getIsFetching, getUsers,
+    getUsersPerPage,
+    getUsersTotalCount
+} from "../../redux/users-selectors";
 
 class UserContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.usersPerPage)
+        this.props.requestUsers(this.props.currentPage, this.props.usersPerPage)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.usersPerPage)
+        this.props.requestUsers(pageNumber, this.props.usersPerPage)
     }
 
     render() {
@@ -22,7 +29,7 @@ class UserContainer extends React.Component {
 
 // let redirectedComponent = withAuthRedirect(UserContainer);
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
     return {
         users: state.usersPage.users,
         usersPerPage: state.usersPage.usersPerPage,
@@ -31,8 +38,19 @@ function mapStateToProps(state) {
         isFetching: state.usersPage.isFetching,
         followingInProgressUsers: state.usersPage.followingInProgressUsers,
     }
+}*/
+
+function mapStateToProps(state) {
+    return {
+        users: getUsers(state),
+        usersPerPage: getUsersPerPage(state),
+        pagesCount: Math.ceil(getUsersTotalCount(state) / getUsersPerPage(state)),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgressUsers: getFollowingInProgressUsers(state),
+    }
 }
 
-// export default connect(mapStateToProps,{getUsers, toggleFollow})(redirectedComponent);
+// export default connect(mapStateToProps,{requestUsers, toggleFollow})(redirectedComponent);
 
-export default compose(connect(mapStateToProps,{getUsers, toggleFollow}))(UserContainer)
+export default compose(connect(mapStateToProps,{requestUsers, toggleFollow}))(UserContainer)
