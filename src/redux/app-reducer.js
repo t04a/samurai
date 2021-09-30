@@ -4,6 +4,7 @@ const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 let initialState = {
     initialized: false,
+    isOlolo: 'ololo'
 };
 
 function appReducer(state = initialState, action) {
@@ -29,7 +30,7 @@ export const initializeApp = () => (dispatch) => {
         .then(() => {
             dispatch(initializedSuccessAC())
         })
-    console.log('Initializing success')
+    // console.log('Initializing success')
 }
 
 

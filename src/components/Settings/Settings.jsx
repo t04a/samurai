@@ -1,6 +1,4 @@
-import style from './Settings.module.css'
-
-function Settings(props) {
+function Settings() {
     return (
         <div>
             Settings

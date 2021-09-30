@@ -1,5 +1,17 @@
-export function getUsers(state) {
+import {createSelector} from "reselect";
+
+export const getUsers = createSelector([getUsersSelector, getOlolo], (users, isOlolo) => {
+    console.log(users)
+    console.log(isOlolo)
+    return users
+})
+
+function getUsersSelector(state) {
     return state.usersPage.users
+}
+
+function getOlolo(state) {
+    return state.app.isOlolo
 }
 
 export function getUsersPerPage(state) {

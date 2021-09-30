@@ -1,6 +1,4 @@
-import style from './Music.module.css'
-
-function Music(props) {
+function Music() {
     return (
         <div>
             Music

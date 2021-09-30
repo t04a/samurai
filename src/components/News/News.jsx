@@ -1,6 +1,4 @@
-import style from './News.module.css'
-
-function News(props) {
+function News() {
     return (
         <div>
             News
