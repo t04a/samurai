@@ -27,19 +27,6 @@ class UserContainer extends React.Component {
     }
 }
 
-// let redirectedComponent = withAuthRedirect(UserContainer);
-
-/*function mapStateToProps(state) {
-    return {
-        users: state.usersPage.users,
-        usersPerPage: state.usersPage.usersPerPage,
-        pagesCount: Math.ceil(state.usersPage.usersTotalCount / state.usersPage.usersPerPage),
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgressUsers: state.usersPage.followingInProgressUsers,
-    }
-}*/
-
 function mapStateToProps(state) {
     return {
         users: getUsers(state),
@@ -50,7 +37,5 @@ function mapStateToProps(state) {
         followingInProgressUsers: getFollowingInProgressUsers(state),
     }
 }
-
-// export default connect(mapStateToProps,{requestUsers, toggleFollow})(redirectedComponent);
 
 export default compose(connect(mapStateToProps,{requestUsers, toggleFollow}))(UserContainer)
