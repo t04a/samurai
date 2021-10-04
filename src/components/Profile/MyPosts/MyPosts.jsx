@@ -1,3 +1,4 @@
+import React from "react";
 import style from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
@@ -6,13 +7,15 @@ import {Textarea} from "../../common/FormsControls/FormsControls";
 
 const maxLength10 = maxLengthCreator(10);
 
-function MyPosts(props) {
+const MyPosts = React.memo(props => {
     function addNewPost(values) {
         console.log(values);
         props.addPost(values.newPostText);
     }
 
-    let postElements = props.state.posts.map(p => <Post message={p.message} likeCount={p.likesCount}/>)
+    let postElements = props.state.posts.map(p => <Post message={p.message}
+                                                        likeCount={p.likesCount}
+                                                        key={p.id}/>)
 
     return (
         <div className={style.postsBlock}>
@@ -23,13 +26,16 @@ function MyPosts(props) {
             </div>
         </div>
     );
-}
+});
 
 function NewPostForm(props) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Textarea} name={'newPostText'} validate={[required, maxLength10]} placeholder={'Post message'}/>
+                <Field component={Textarea}
+                       name={'newPostText'}
+                       validate={[required, maxLength10]}
+                       placeholder={'Post message'}/>
             </div>
             <div>
                 <button>Send</button>
