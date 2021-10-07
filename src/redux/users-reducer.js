@@ -80,15 +80,13 @@ export const toggleUserIsFollowingAC = (userId, isFollowing) => ({type: TOGGLE_U
 
 /*thunk creators*/
 export const requestUsers = (currentPage, usersPerPage) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setCurrentPageAC(currentPage));
         dispatch(setIsFetchingAC(true));
-        usersAPI.getUsers(currentPage, usersPerPage)
-            .then(data => {
-                dispatch(setIsFetchingAC(false));
-                dispatch(setUsersAC(data.items));
-                dispatch(setUsersTotalCountAC(data.totalCount));
-            })
+        let data = await usersAPI.getUsers(currentPage, usersPerPage);
+        dispatch(setIsFetchingAC(false));
+        dispatch(setUsersAC(data.items));
+        dispatch(setUsersTotalCountAC(data.totalCount));
     }
 }
 

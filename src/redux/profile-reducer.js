@@ -53,32 +53,26 @@ export const setUserProfileAC = (userProfile) => ({type: SET_USER_PROFILE, userP
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status})
 
 //thunk creators
- export const getUserProfile = (userId) => {
-    return (dispatch) => {
-        profileAPI.getUserProfile(userId).then(response => {
-            dispatch(setUserProfileAC(response.data));
-        })
+export const getUserProfile = (userId) => {
+    return async (dispatch) => {
+        let response = await profileAPI.getUserProfile(userId);
+        dispatch(setUserProfileAC(response.data));
     }
- }
+}
 
- export const getProfileStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfileStatus(userId)
-            .then( response => {
-                // console.log(response.data)
-                dispatch(setProfileStatus(response.data))
-            })
+export const getProfileStatus = (userId) => {
+    return async (dispatch) => {
+        let response = await profileAPI.getProfileStatus(userId);
+        dispatch(setProfileStatus(response.data))
     }
- }
+}
 
 export const updateProfileStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateProfileStatus(status)
-            .then( response => {
-                if (response.data.resultCode === 0) {
-                   dispatch(setProfileStatus(status))
-                }
-            })
+    return async (dispatch) => {
+        let response = await profileAPI.updateProfileStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setProfileStatus(status))
+        }
     }
 }
 
