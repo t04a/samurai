@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0d373365.chunk.css",
+    "main.js": "/static/js/main.c5fd5597.chunk.js",
+    "main.js.map": "/static/js/main.c5fd5597.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.57bf17dc.js",
+    "runtime-main.js.map": "/static/js/runtime-main.57bf17dc.js.map",
+    "static/js/2.d01f7dc8.chunk.js": "/static/js/2.d01f7dc8.chunk.js",
+    "static/js/2.d01f7dc8.chunk.js.map": "/static/js/2.d01f7dc8.chunk.js.map",
+    "static/js/3.8c716d26.chunk.js": "/static/js/3.8c716d26.chunk.js",
+    "static/js/3.8c716d26.chunk.js.map": "/static/js/3.8c716d26.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.0d373365.chunk.css.map": "/static/css/main.0d373365.chunk.css.map",
+    "static/js/2.d01f7dc8.chunk.js.LICENSE.txt": "/static/js/2.d01f7dc8.chunk.js.LICENSE.txt",
+    "static/media/loader.93d5c725.gif": "/static/media/loader.93d5c725.gif",
+    "static/media/medved.696da864.jpg": "/static/media/medved.696da864.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.57bf17dc.js",
+    "static/js/2.d01f7dc8.chunk.js",
+    "static/css/main.0d373365.chunk.css",
+    "static/js/main.c5fd5597.chunk.js"
+  ]
+}
