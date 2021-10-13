@@ -1,8 +1,6 @@
 import {createSelector} from "reselect";
 
-export const getUsers = createSelector([getUsersSelector, getOlolo], (users, isOlolo) => {
-    console.log(users)
-    console.log(isOlolo)
+export const getUsers = createSelector([getUsersSelector, getOlolo], (users) => {
     return users
 })
 

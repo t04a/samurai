@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import User from "./User/User";
-import style from './Users.module.css'
 import Preloader from "../common/Preloader/Preloader";
+import Pagination from "../Pagination/Pagination";
 
 function Users(props) {
     let userElements = props.users.map(u => <User key={u.id}
@@ -10,30 +10,30 @@ function Users(props) {
                                                   followingInProgressUsers={props.followingInProgressUsers}
     />);
 
-    let pages = [];
-    for (let i = 1; i <= props.pagesCount; i++) {
-        pages.push(i)
-        if (i >= 40) {
-            break;
-        }
-    }
+    const [currentPage, setCurrentPage] = useState(1);
 
-    let paginationElements = pages.map(p => (
-        <span className={`${style.pagEl} ${props.currentPage === p ? style.selected : undefined}`}
-              onClick={() => props.onPageChanged(p)}
-              key={p}>
-            {p}</span>));
+    function changePage(page) {
+        setCurrentPage(page)
+        props.onPageChanged(page)
+    }
 
     return (
         <div>
-            { props.isFetching ?
+            {props.isFetching ?
                 <Preloader/> :
                 <div>
-                    <div className={style.pagination}>
-                        {paginationElements}
-                    </div>
                     <div>
                         {userElements}
+                    </div>
+                    <div>
+                        <Pagination currentPage={currentPage}
+                                    totalCount={props.usersTotalCount}
+                                    pageSize={props.usersPerPage}
+                                    onPageChange={page => {
+                                        changePage(page);
+                                        }
+                                    }
+                        />
                     </div>
                 </div>
             }

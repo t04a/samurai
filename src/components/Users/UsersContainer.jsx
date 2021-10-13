@@ -31,6 +31,7 @@ function mapStateToProps(state) {
     return {
         users: getUsers(state),
         usersPerPage: getUsersPerPage(state),
+        usersTotalCount: getUsersTotalCount(state),
         pagesCount: Math.ceil(getUsersTotalCount(state) / getUsersPerPage(state)),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
