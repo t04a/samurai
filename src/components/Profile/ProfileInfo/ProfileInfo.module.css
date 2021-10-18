@@ -1,3 +1,9 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.avatar {
+    border: 1px solid gold;
+    width: 400px;
+
+}
